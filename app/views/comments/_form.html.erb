@@ -1,0 +1,18 @@
+<%= form_for ([@blog,@blog.comments.build]) do |f| %>
+    <%# <%= render 'layouts/error_messages', f: f.object %>
+
+    <!-- form_for @object, html: { multipart: true }, do |f| -->
+    <!-- form_for @object, html: { class: "classname" }, do |f| -->
+    <p>
+        <%= f.label :name %><br/>
+        <%= f.text_field :name %>
+    </p>
+    <p>
+        <%= f.label :body %><br/>
+        <%= f.text_area :body%>
+    </p>
+
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

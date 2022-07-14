@@ -1,0 +1,12 @@
+<p><%= comment.name %></p>
+<p><%= comment.body %></p>
+<p><%= time_ago_in_words(comment.created_at) %> ago</p>
+
+<% if user_signed_in? %>
+    <p>
+        <%= button_to "Delete", [comment.blog, comment], method: :delete, data: {confirm: "Sure?"},
+            :style => 'background: none!important; border: none; padding: 0!important; font-family: arial, sans-serif; color: #0000FF;
+            text-decoration: underline; cursor: pointer;'
+        %>
+    </p>
+<% end %>

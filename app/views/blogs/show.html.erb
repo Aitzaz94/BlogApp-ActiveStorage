@@ -1,0 +1,20 @@
+<h1> Your Blog Here ... </h1>
+
+<p>
+    Title: <%= @blog.title %>
+</p>
+
+<p>
+    Description: <%= @blog.description %>
+</p>
+
+<h3> <%= @blog.comments.count %> Comments </h3>
+<%= render @blog.comments %>
+<h4> Add a Comment </h4>
+<%= render 'comments/form' %><br/><br/>
+<br/>
+<% if user_signed_in? %>
+
+    <%= link_to "Back to Blogs", blogs_path %> |
+    <%= link_to "Edit this Blog", edit_blog_path(@blog) %>
+<% end %>

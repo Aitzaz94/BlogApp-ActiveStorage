@@ -1,0 +1,30 @@
+<div class="center jumbotron">
+    <h1> Listing all Blogs here ... </h1>
+
+    <%# <%= link_to "Create New Blog", new_blog_path %>
+
+    <% if !user_signed_in? %>
+        <% controller.redirect_to new_user_session_path %>
+    <% else %>
+    <table align="center">
+
+        <tr>
+            <th> Title </th>
+            <th> Description </th>
+        </tr>
+
+        <% @blogs.each do |blog| %>
+            <tr>
+                <td><%= blog.title %></td>
+                <td><%= blog.description %></td>
+                <td><%= link_to "Edit", edit_blog_path(blog) %></td>
+                <td><%= link_to "Show", blog_path(blog) %></td>
+                <td><%=  button_to "Delete", blog_path(blog), method: :delete,
+                :style => 'background: none!important; border: none; padding: 0!important; font-family: arial, sans-serif; color: #0000FF;
+                text-decoration: underline; cursor: pointer;' %></td>
+            </tr>
+        <% end %>
+
+    </table>
+    <% end %>
+</div>
