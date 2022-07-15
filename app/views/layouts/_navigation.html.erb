@@ -13,6 +13,7 @@
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>
+        <% if user_signed_in? %>
         <li class="nav-item">
             <a class="nav-link" >
                 <%=  button_to "Create Blog", new_blog_path(current_user), method: :get, 
@@ -20,6 +21,7 @@
                         sans-serif; color: #0d6efd; cursor: pointer;' %>
             </a>
         </li>
+        <% end %>
       </ul>
       <%# <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -31,27 +33,31 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <% if user_signed_in? %>
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Hi, <%= current_user.email %>
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" >
-                        <%=  button_to "Logout", destroy_user_session_path, method: :delete,
-                        :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
-                        sans-serif; color: #0d6efd; cursor: pointer;' %>
-                </a></li>
-                <li><a class="dropdown-item">  
-                    <%= button_to "Edit User", edit_user_registration_path(current_user), method: :get,
-                        :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
-                        sans-serif; color: #0d6efd; cursor: pointer;' %>
-                </a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item">
-                        <%= button_to "Delete my account", registration_path(current_user), method: :delete,
-                        :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
-                        sans-serif; color: #0d6efd; cursor: pointer;' %>
-                    </a></li>
-              </ul>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Hi, <%= current_user.email %>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" >
+                          <%=  button_to "Logout", destroy_user_session_path, method: :delete,
+                          :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
+                          sans-serif; color: #0d6efd; cursor: pointer;' %>
+                  </a></li>
+                  <li><a class="dropdown-item">  
+                      <%= button_to "Edit User", edit_user_registration_path(current_user), method: :get,
+                          :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
+                          sans-serif; color: #0d6efd; cursor: pointer;' %>
+                  </a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item">
+                          <%= button_to "Delete my account", registration_path(current_user), method: :delete,
+                          :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
+                          sans-serif; color: #0d6efd; cursor: pointer;' %>
+                      </a></li>
+                </ul>
+                <% else %>
+                  <a>
+                    <%= link_to "SignIn", new_user_session_path %>
+                </a>
               <% end %>
             </li>
         </ul>

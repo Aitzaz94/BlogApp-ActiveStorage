@@ -3,10 +3,10 @@ class CommentsController < ApplicationController
     @blog = Blog.find(params[:blog_id])
     @comment = @blog.comments.create(params[:comment].permit(:name, :body))
     if @comment.save
-      flash[:notice] = "Comment Created"
+      flash[:success] = "Comment Created"
       redirect_to blog_path(@blog)
     else
-      flash[:notice] = "Comment not Created"
+      flash[:danger] = "Comment not Created"
       redirect_to blog_path(@blog)
     end
   end

@@ -1,8 +1,9 @@
 class BlogsController < ApplicationController
 
   def index
-    @user ||= current_user
-    @blogs = @user.blogs.all if @user
+    # @user ||= current_user
+    # @blogs = @user.blogs.all if @user
+    @blogs = Blog.all
   end
 
 
@@ -13,10 +14,10 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     if @blog.save
-      flash[:notice] = "Blog successfully created"
+      flash[:success] = "Blog successfully created"
       redirect_to blog_path(@blog)
     else
-      flash[:notice] = "Something went wrong"
+      flash[:danger] = "Something went wrong"
       render 'new'
     end
   end
@@ -32,10 +33,10 @@ class BlogsController < ApplicationController
   def update
     @blog = Blog.find(params[:id])
       if @blog.update(blog_params)
-        flash[:notice] = "Blog was successfully updated"
+        flash[:success] = "Blog was successfully updated"
         redirect_to blog_path(@blog)
       else
-        flash[:notice] = "Something went wrong"
+        flash[:danger] = "Something went wrong"
         render 'edit'
       end
   end
@@ -43,10 +44,10 @@ class BlogsController < ApplicationController
   def destroy
     @blog = Blog.find(params[:id])
     if @blog.destroy
-      flash[:notice] = 'Blog was successfully deleted.'
+      flash[:danger] = 'Blog was successfully deleted.'
       redirect_to blogs_path
     else
-      flash[:notice] = 'Something went wrong'
+      flash[:danger] = 'Something went wrong'
       redirect_to blogs_path, status: :see_other
     end
   end

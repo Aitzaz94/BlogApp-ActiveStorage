@@ -12,11 +12,11 @@
 
   <body>
     <%= render 'layouts/navigation' %>
-    <%# <%= render 'layouts/messages' %>
+    <%= render 'layouts/messages' %>
 
-    <% if !user_signed_in? %>
-      <%= link_to "Login", new_user_session_path %>
-    <% end %>
+    <%# <% if !user_signed_in? %>
+      <%# <%= link_to "Login", new_user_session_path %>
+    <%# <% end %>
 
     <% if user_signed_in? %>
       <%# <%= link_to "New Blog", new_blog_path %>
