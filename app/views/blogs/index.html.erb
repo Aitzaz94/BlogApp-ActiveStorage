@@ -23,10 +23,12 @@
                     </div>
                     <% end %>
                 </div> - blog by: 
-                <%= if blog.user_id == nil %>
-                    <%# <%= blog.user_id %>
-                    Hello
-                <% end %>
+                <% if blog.user_id != nil %>
+                    <%= User.find(blog.user_id).email %>
+                <% else %>
+                    No author available
+                <% end %> 
+                <%# <%= blog.includes(:email).where('blog.user_id =?') %>
             </div>
         </div><br/><br/>
     <% end %>

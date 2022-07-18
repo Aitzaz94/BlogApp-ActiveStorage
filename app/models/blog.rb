@@ -4,6 +4,8 @@ class Blog < ApplicationRecord
   validates :description, presence: true, length: {minimum: 10, maximum: 300}
   validates :user_id, presence: true
 
+  has_many :blog_categories
+  has_many :categories, through: :blog_categories
   has_many :comments, dependent: :destroy
   belongs_to :user
 

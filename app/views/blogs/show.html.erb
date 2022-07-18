@@ -3,6 +3,9 @@
     <h4 class="center description"><strong>Description:</strong></h4>
     <hr>
         <%= simple_format(@blog.description) %><br/><br/>
+        <% if @blog.categories.any? %>
+            <p> Categories: <%= render @blog.categories %></p>
+        <% end %>
         <h2><%= @blog.comments.count%> comments</h2>
             <%= render @blog.comments %>
             <h3> Add a Comment </h3>
