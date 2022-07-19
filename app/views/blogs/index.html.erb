@@ -1,33 +1,47 @@
 <h1 align="center">Listing all blogs</h1>
 
-<%# <% if !user_signed_in? %>
-    <%# <% controller.redirect_to new_user_session_path %>
-    <%# <% controller.redirect_to root_path %>
-<%# <% else %>
+<% if !user_signed_in?%>
+    <% @blogs.each do |blog| %>
 
-<% @blogs.each do |blog| %>
-    <div class="row">
-        <div class="col-xs-8 col-xs-offset-2", id="blog-details">
-            <div class="well well-lg">
-                <div class="blog-title">
-                    <%= link_to blog.title, blog_path(blog), :style => 'text-decoration: none;' %>
-                </div>
-                <div class="blog-body">
-                    <%= truncate(blog.description, length: 100) %>
-                </div>
-                <% if user_signed_in? %>
-                <div class="blog-actions">
-                    <%= link_to "Edit this blog", edit_blog_path(blog), class: "btn btn-xs btn-primary" %>
-                    <%= link_to "Delete", blog_path(blog), method: :delete, class: "btn btn-xs btn-danger" %>
-                </div>
-                <% end %>
-            </div> - blog by: 
-            <% if blog.user_id != nil %>
-                <%= User.find(blog.user_id).email %>
-            <% else %>
-                No author available
-            <% end %> 
-            <%# <%= blog.includes(:email).where('blog.user_id =?') %>
-        </div>
-    </div><br/><br/>
-<% end %>
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2", id="blog-details">
+                <div class="well well-lg">
+                    <div class="blog-title">
+                        <%= link_to blog.title, blog_path(blog), :style => 'text-decoration: none;' %>
+                    </div>
+                    <div class="blog-body">
+                        <%= truncate(blog.description, length: 100) %>
+                    </div>
+                </div> - blog by: 
+                <% if blog.user_id != nil %>
+                    <%= User.find(blog.user_id).email %>
+                <% else %>
+                    No author available
+                <% end %> 
+            </div>
+        </div><br/>
+    <% end %>
+<% else %>    
+    <% @blogs.each do |blog| %>
+        <% if blog.user_id != nil %>
+            <div class="row">
+                <% if current_user.email == User.find(blog.user_id).email %>
+                    <div class="col-xs-8 col-xs-offset-2", id="blog-details">
+                        <div class="well well-lg">
+                            <div class="blog-title">
+                                <%= link_to blog.title, blog_path(blog), :style => 'text-decoration: none;' %>
+                            </div>
+                            <div class="blog-body">
+                                <%= truncate(blog.description, length: 100) %>
+                            </div>
+                            <div class="blog-actions">
+                                <%= link_to "Edit this blog", edit_blog_path(blog), class: "btn btn-xs btn-primary" %>
+                                <%= link_to "Delete", blog_path(blog), method: :delete, class: "btn btn-xs btn-danger" %>
+                            </div>
+                        </div> 
+                    </div>
+                <%end%>
+            </div><br/>
+        <%end%>
+    <% end %>
+<%end%>
