@@ -1,5 +1,6 @@
 <h2 align="center">Title: <%= @blog.title %></h2>
 <div class="well col-xs-8 col-xs-offset-2">
+<div><img style="width: 400px;", src=" <%= @blog.image %>"></div>
     <h4 class="center description"><strong>Description:</strong></h4>
     <hr>
         <%= simple_format(@blog.description) %><br/><br/>

@@ -9,4 +9,8 @@ class Blog < ApplicationRecord
   has_many :comments, dependent: :destroy
   belongs_to :user
 
+  mount_uploader :image, FileUploader
+
+  has_many :images, as: :picturable
+
 end

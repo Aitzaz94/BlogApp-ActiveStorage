@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_18_105210) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_22_052026) do
   create_table "blog_categories", force: :cascade do |t|
     t.integer "blog_id"
     t.integer "category_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_18_105210) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.integer "user_id"
+    t.string "image"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -49,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_18_105210) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

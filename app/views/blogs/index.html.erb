@@ -21,7 +21,8 @@
             </div>
         </div><br/>
     <% end %>
-<% else %>    
+<% else %>
+<div align="center"><img style="width: 100px; object-fit: cover; border-radius: 50%; height: 100px;", src=" <%= current_user.image %>"></div>
     <% @blogs.each do |blog| %>
         <% if blog.user_id != nil %>
             <div class="row">
