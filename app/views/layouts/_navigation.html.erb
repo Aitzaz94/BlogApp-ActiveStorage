@@ -34,7 +34,7 @@
             <li class="nav-item dropdown">
               <% if user_signed_in? %>
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Hi, <%= current_user.email %>
+                  Hi, <%= current_user.email %>, you are a [<%= current_user.role %>]
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" >

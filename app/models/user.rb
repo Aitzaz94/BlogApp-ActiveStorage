@@ -9,4 +9,13 @@ class User < ApplicationRecord
 
   has_many :blogs, dependent: :destroy
   has_one :picture, as: :picturable
+
+
+  enum role: [:user, :moderator, :admin]
+  after_initialize :set_default_role, :if => :new_record?
+
+  def set_default_role
+    self.role ||= :user
+  end
+
 end
