@@ -1,0 +1,32 @@
+<%= form_with(model: search_opmtimization) do |form| %>
+  <% if search_opmtimization.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(search_opmtimization.errors.count, "error") %> prohibited this search_opmtimization from being saved:</h2>
+
+      <ul>
+        <% search_opmtimization.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :keyword, style: "display: block" %>
+    <%= form.text_field :keyword %>
+  </div>
+
+  <div>
+    <%= form.label :city, style: "display: block" %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div>
+    <%= form.label :blog_id, style: "display: block" %>
+    <%= form.text_field :blog_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

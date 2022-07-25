@@ -13,4 +13,6 @@ class Blog < ApplicationRecord
 
   has_many :images, as: :picturable
 
+  has_many :search_opmtimizations
+
 end

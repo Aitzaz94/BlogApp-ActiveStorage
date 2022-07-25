@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Search opmtimizations</h1>
+
+<div id="search_opmtimizations">
+  <% @search_opmtimizations.each do |search_opmtimization| %>
+    <%= render search_opmtimization %>
+    <p>
+      <%= link_to "Show this search opmtimization", search_opmtimization %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New search opmtimization", new_search_opmtimization_path %>
