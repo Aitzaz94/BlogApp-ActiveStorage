@@ -1,9 +1,12 @@
 class BlogsController < ApplicationController
 
+before_action :authenticate_user!, except: [:index, :show]
+
   def index
     # @user ||= current_user
     # @blogs = @user.blogs.all if @user
     @blogs = Blog.all
+    authorize @blogs
   end
 
 

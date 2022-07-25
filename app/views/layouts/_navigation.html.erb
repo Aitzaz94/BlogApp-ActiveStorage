@@ -22,6 +22,15 @@
             </a>
         </li>
         <% end %>
+        <% if user_signed_in? && current_user.admin? %>
+          <li class="nav-item" >
+            <a class="nav-link" >
+              <%= button_to "Edit Users", users_path, method: :get, 
+                    :style => 'background: none!important; border: none; padding: 0!important; font-family:
+                        sans-serif; color: #0d6efd; cursor: pointer;' %>
+            </a>
+          </li>
+        <% end %>
       </ul>
       <%# <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
