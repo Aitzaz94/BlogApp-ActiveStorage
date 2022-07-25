@@ -8,4 +8,14 @@ class UserPolicy < ApplicationPolicy
   def index?
     @user.admin?
   end
+  def show?
+    @user.admin? || @user == current_user
+  end
+  def update?
+    @user.admin?
+  end
+  def destroy?
+    # retrun false if @user == current_user
+    @user.admin?
+  end
 end
