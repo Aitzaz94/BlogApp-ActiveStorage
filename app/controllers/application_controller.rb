@@ -2,7 +2,9 @@ class ApplicationController < ActionController::Base
 
     before_action :configure_permitted_parameters, if: :devise_controller?
 
-    include Pundit::Authorization
+    include Pundit
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     protected
 
@@ -13,4 +15,10 @@ class ApplicationController < ActionController::Base
         :password_confirmation, :current_password, :image, :image_cache, :remove_image) }
     end
 
+    private
+
+    def user_not_authorized
+        flash[:alert] = "Access Denied"
+        redirect_to (request_refer || root_path)
+    end
 end
