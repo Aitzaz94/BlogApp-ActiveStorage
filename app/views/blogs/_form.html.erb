@@ -37,6 +37,13 @@
                     <% end %>
                 </div>
             </div>
+           
+                <%# <%= f.fields_for :search_opmtimizations do |sff| %>
+                    <%# <%= render "search_opmtimization_fields", f: sff%>
+                <%# <% end %>
+                
+                <%= link_to_add_fields "Add SEO Info", f, :search_opmtimizations %>
+            
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10", align="right", id="blogs-submit-form-btn" >
                     <%= f.submit class: "btn btn-primary btn-lg" %>
@@ -48,3 +55,15 @@
         </div>
     </div>
 </div>
+
+
+<%# <script>
+    $('form').on('click', 'add_fields', function(event){
+        console.log('clicked')
+        // var regexp, time;
+        // time = new Date().getTime();
+        // regexp = new RegExp($(this).data('id'), 'g');
+        // $(this).before($(this).data('fields').replace(regexp, time));
+        // return event.preventDefault();
+    });
+</script> %>

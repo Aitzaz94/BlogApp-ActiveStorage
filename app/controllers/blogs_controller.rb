@@ -12,6 +12,7 @@ before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @blog = Blog.new
+    @blog.search_opmtimizations.build
   end
 
   def create
@@ -59,7 +60,7 @@ before_action :authenticate_user!, except: [:index, :show]
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :description, :user_id, :image, category_ids: [])
+    params.require(:blog).permit(:title, :description, :user_id, :image, category_ids: [], search_opmtimizations_attributes: [:keyword, :city])
   end
 
 end

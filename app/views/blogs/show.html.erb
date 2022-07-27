@@ -1,11 +1,11 @@
 <h2 align="center">Title: <%= @blog.title %></h2>
 <div class="well col-xs-8 col-xs-offset-2">
-<div><img style="width: 400px;", src=" <%= @blog.image %>"></div>
+<div><img style="width: 1292px; height: 400px;", src=" <%= @blog.image %>"></div>
     <h4 class="center description"><strong>Description:</strong></h4>
     <hr>
         <%= simple_format(@blog.description) %><br/><br/>
         <% @blog.search_opmtimizations.each do |so| %>
-        <strong> Search Optimization </strong><br/>
+        <br/><strong> Search Optimization </strong><br/>
             Category: &nbsp&nbsp<%= so.keyword %><br/>
             City Located: &nbsp&nbsp<%= so.city %>
         <% end %>

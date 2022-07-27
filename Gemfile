@@ -8,6 +8,8 @@ gem "rails", "~> 7.0.3"
 
 gem 'carrierwave', '~> 2.0'
 
+gem 'link_to_add_fields'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

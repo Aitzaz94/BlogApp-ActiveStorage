@@ -15,4 +15,6 @@ class Blog < ApplicationRecord
 
   has_many :search_opmtimizations
 
+accepts_nested_attributes_for :search_opmtimizations
+
 end
