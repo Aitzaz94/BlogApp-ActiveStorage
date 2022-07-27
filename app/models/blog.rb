@@ -4,7 +4,7 @@ class Blog < ApplicationRecord
   validates :description, presence: true, length: {minimum: 10, maximum: 300}
   validates :user_id, presence: true
 
-  has_many :blog_categories
+  has_many :blog_categories, dependent: :destroy
   has_many :categories, through: :blog_categories
   has_many :comments, dependent: :destroy
   belongs_to :user
@@ -13,7 +13,7 @@ class Blog < ApplicationRecord
 
   has_many :images, as: :picturable
 
-  has_many :search_opmtimizations
+  has_many :search_opmtimizations, dependent: :destroy  
 
 accepts_nested_attributes_for :search_opmtimizations
 
