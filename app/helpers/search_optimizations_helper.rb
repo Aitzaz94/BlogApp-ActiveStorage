@@ -1,0 +1,2 @@
+module SearchOptimizationsHelper
+end

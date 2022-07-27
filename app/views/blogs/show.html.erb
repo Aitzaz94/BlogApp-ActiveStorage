@@ -4,6 +4,11 @@
     <h4 class="center description"><strong>Description:</strong></h4>
     <hr>
         <%= simple_format(@blog.description) %><br/><br/>
+        <% @blog.search_opmtimizations.each do |so| %>
+        <strong> Search Optimization </strong><br/>
+            Category: &nbsp&nbsp<%= so.keyword %><br/>
+            City Located: &nbsp&nbsp<%= so.city %>
+        <% end %>
         <% if @blog.categories.any? %>
             <p> Categories: <%= render @blog.categories %></p>
         <% end %>
