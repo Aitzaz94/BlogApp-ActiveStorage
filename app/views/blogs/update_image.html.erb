@@ -1,0 +1,23 @@
+Hi updating image here
+<div class="row">
+    <div class="col-xs-12">
+        <%= form_for(@blog, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+             <div class="form-group row">
+                <div class="control-label col-sm-2">
+                    <%= f.label :image %>
+                </div>
+                <div class="col-sm-8" >
+                    <%= f.file_field :image, class: "form-control" %>
+                </div>
+            </div><br/>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10", align="right", id="blogs-submit-form-btn" >
+                    <%= f.submit class: "btn btn-primary btn-lg" %>
+                </div>
+            </div>
+        <% end %>
+        <div class="col-xs-4 col-xs-offset-4">
+            <%= link_to "Back to Blogs", blogs_path %>
+        </div>
+    </div>
+</div>

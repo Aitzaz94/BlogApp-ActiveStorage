@@ -9,6 +9,29 @@ before_action :authenticate_user!, except: [:index, :show]
     authorize @blogs
   end
 
+  def purge_image
+    @blog = Blog.find(params[:id])
+    @blog.image.purge
+    redirect_back fallback_location: root_path, notice: "success(deletion)"
+  end
+
+  def update_image
+    @blog = Blog.find(params[:id])
+    if !@blog.image.present?
+      # if @blog.update(blog_params)
+      #   flash[:success] = "Blog was successfully updated"
+      #   redirect_to blog_path(@blog)
+      # else
+      #   flash[:danger] = "Something went wrong"
+      #   render 'edit'
+      # end
+    else
+      # flash[:danger] = "Image has_one present"
+      # redirect_to blog_path(@blog)
+      @blog.image.purge
+      redirect_to update_image_blog_path(@blog)
+    end
+  end
 
   def new
     @blog = Blog.new
@@ -30,19 +53,20 @@ before_action :authenticate_user!, except: [:index, :show]
     @blog = Blog.find(params[:id])
   end
 
+
   def edit
     @blog = Blog.find(params[:id])
   end
 
   def update
     @blog = Blog.find(params[:id])
-      if @blog.update(blog_params)
-        flash[:success] = "Blog was successfully updated"
-        redirect_to blog_path(@blog)
-      else
-        flash[:danger] = "Something went wrong"
-        render 'edit'
-      end
+    if @blog.update(blog_params)
+      flash[:success] = "Blog was successfully updated"
+      redirect_to blog_path(@blog)
+    else
+      flash[:danger] = "Something went wrong"
+      render 'edit'
+    end
   end
 
   def destroy

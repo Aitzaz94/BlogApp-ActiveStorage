@@ -8,8 +8,16 @@ Rails.application.routes.draw do
 
   root 'blogs#index'
   resources :blogs do
+    # update :purge_image
     resources :comments
+    member do
+      delete :purge_image
+      get :update_image
+      # edit :purge_edit_image
+    end
   end
+
+  # get 'blogs/image_update', to: 'blogs#image_update'
 
   resources :users
 

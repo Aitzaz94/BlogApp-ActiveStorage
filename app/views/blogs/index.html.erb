@@ -22,7 +22,9 @@
         </div><br/>
     <% end %>
 <% else %>
-<div align="center"><img style="width: 100px; object-fit: cover; border-radius: 50%; height: 100px;", src=" <%= current_user.image %>"></div>
+    <div align = center>
+        <%= image_tag(current_user.image, class: "w-100 rounded-circle shadow-lg d-block max-auto", style: 'max-width: 10rem;  height: 8rem;') %>
+    </div>
     <% @blogs.each do |blog| %>
         <% if blog.user_id != nil %>
             <div class="row">
