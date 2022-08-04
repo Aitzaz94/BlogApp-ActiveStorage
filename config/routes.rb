@@ -25,5 +25,6 @@ Rails.application.routes.draw do
 
   resources :search_optimizations
 
+  # mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
 end
