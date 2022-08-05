@@ -1,11 +1,17 @@
 <h2 align="center">Title: <%= @blog.title %></h2>
 <div class="well col-xs-8 col-xs-offset-2">
-<div>
-    <%= image_tag(@blog.image) if @blog.image.present? %>
-    <%= button_to "Delete Image", purge_image_blog_path(@blog), method: :delete %> |
+<div class="position-relative">
+    <% if @blog.image.present? %>
+        <%= image_tag(@blog.image, :class => "blog_image") %>
+    <% end %>
+    <div class="middle">
+        <div class="buttons">
+            <%= button_to "Delete Image", purge_image_blog_path(@blog), method: :delete %> |
     
-    <%= link_to "Update Image", update_image_blog_path(@blog) %> 
-    <%# <%= link_to "Update Image", edit_blog_path(@blog) %>
+            <%= link_to "Update Image", update_image_blog_path(@blog) %>
+        </div>
+    </div>
+    
 </div>
     <h4 class="center description"><strong>Description:</strong></h4>
     <hr>
