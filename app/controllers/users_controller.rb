@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+    
+  include UsersHelper
     before_action :authenticate_user!
-    after_action :verify_authorized
-  
+    # after_action :verify_authorized
+
+
     def index
       @users = User.all
       authorize User
@@ -21,14 +24,14 @@ class UsersController < ApplicationController
         redirect_to users_path, :danger => "Unable to update user."
       end
     end
-  
+
     def destroy
       @user = User.find(params[:id])
       authorize @user
       @user.destroy
       redirect_to users_path, :danger => "User deleted."
     end
-  
+
     private
   
     def secure_params

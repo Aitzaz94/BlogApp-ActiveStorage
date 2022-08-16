@@ -19,7 +19,11 @@ Rails.application.routes.draw do
 
   # get 'blogs/image_update', to: 'blogs#image_update'
 
-  resources :users
+  resources :users do
+    member do
+      patch :ban
+    end
+  end
 
   resources :categories
 
