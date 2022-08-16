@@ -87,7 +87,7 @@ padding-bottom: 15px;
 .blog_image {
     opacity: 1;
     display: block;
-    width: 100%;
+    width: auto;
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
@@ -114,7 +114,108 @@ padding-bottom: 15px;
   
   .buttons {
     // background-color: #04AA6D;
+    // position: relative;
     color: white;
     font-size: 16px;
     padding: 16px 32px;
   }
+
+//   Image edit
+
+.main-1 {
+  position: relative;
+  margin-top: 50px;
+  width: 500px;
+  height: 300px;
+}
+
+.overlayImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+}
+
+.main-1:hover .overlayImage {
+  display: block;
+  background: rgba(0, 0, 0, .3);
+}
+
+.main-2 {
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  left: 0;
+}
+
+.titleImage {
+  position: absolute;
+  width: 500px;
+  left: 0;
+  top: 120px;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  z-index: 1;
+  transition: top .5s ease;
+}
+
+.main-1:hover .titleImage {
+  top: 90px;
+}
+
+.buttonImage {
+  position: absolute;
+  width: 500px;
+  left:0;
+  top: 180px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.buttonImage a {
+  // width: 200px;
+  // padding: 12px 48px;
+  text-align: center;
+  color: white;
+  // border: solid 2px white;
+  z-index: 1;
+}
+
+.main-1:hover .buttonImage {
+  opacity: 1;
+}
+
+.apple_pagination {
+  background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 1em;
+  cursor: default; }
+.apple_pagination a, .apple_pagination span {
+  padding: 0.2em 0.3em; }
+.apple_pagination .disabled {
+  color: #aaaaaa; }
+.apple_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background-color: #bebebe;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.5;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+  text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+.apple_pagination a {
+  text-decoration: none;
+  color: black; }
+.apple_pagination a:hover, .apple_pagination a:focus {
+  text-decoration: underline; }

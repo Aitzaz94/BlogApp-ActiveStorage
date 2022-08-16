@@ -1,5 +1,4 @@
 <h1 align="center">Listing all blogs</h1>
-
 <% if !user_signed_in?%>
     <% @blogs.each do |blog| %>
 
@@ -43,8 +42,33 @@
                             </div>
                         </div> 
                     </div>
+                <% elsif current_user.admin? %>
+                    <div class="row">
+                        <div class="col-xs-8 col-xs-offset-2", id="blog-details">
+                            <div class="well well-lg">
+                                <div class="blog-title">
+                                    <%= link_to blog.title, blog_path(blog), :style => 'text-decoration: none;' %>
+                                </div>
+                                <div class="blog-body">
+                                    <%= truncate(blog.description, length: 100) %>
+                                </div>
+                            </div> - blog by: 
+                        <% if blog.user_id != nil %>
+                            <%= User.find(blog.user_id).email %>
+                        <% else %>
+                            No author available
+                        <% end %> 
+                        </div>
+                    </div><br/>
                 <%end%>
             </div><br/>
         <%end%>
     <% end %>
 <%end%>
+<div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info @blogs %>
+  </div>
+  <%= will_paginate @blogs, :container => false %>
+</div>
+

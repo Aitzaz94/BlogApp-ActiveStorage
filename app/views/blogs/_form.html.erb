@@ -7,7 +7,7 @@
                     <%= f.label :image %>
                 </div>
                 <div class="col-sm-8" >
-                    <%= f.file_field :image, class: "form-control" %>
+                    <%= f.file_field :image, multiple: true, class: "form-control" %>
                 </div>
             </div><br/>
 
@@ -30,20 +30,14 @@
                     <%= f.number_field :user_id, id: :blog_user_id, value: current_user.id, type: :hidden %>
                 </div>
             </div><br/>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10", align="right", id="blogs-submit-form-btn" >
+            <div class="form-group row">
+                <div class="col-sm-offset-2 col-sm-10", align="right", style="padding-right: 570px;" >
                     <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-                        <% cb.label(class: "checkbox-inline input_checkbox"){cb.check_box(class: "checkbox") + cb.text} %>
+                        <% cb.label(class: "checkbox-inline input_checkbox"){cb.check_box(class: "checkbox") + "    " + cb.text + "         "} %>
                     <% end %>
                 </div>
             </div>
-           
-                <%# <%= f.fields_for :search_opmtimizations do |sff| %>
-                    <%# <%= render "search_opmtimization_fields", f: sff%>
-                <%# <% end %>
-                
                 <%= link_to_add_fields "Add SEO Info", f, :search_opmtimizations %>
-            
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10", align="right", id="blogs-submit-form-btn" >
                     <%= f.submit class: "btn btn-primary btn-lg" %>
@@ -55,15 +49,3 @@
         </div>
     </div>
 </div>
-
-
-<%# <script>
-    $('form').on('click', 'add_fields', function(event){
-        console.log('clicked')
-        // var regexp, time;
-        // time = new Date().getTime();
-        // regexp = new RegExp($(this).data('id'), 'g');
-        // $(this).before($(this).data('fields').replace(regexp, time));
-        // return event.preventDefault();
-    });
-</script> %>

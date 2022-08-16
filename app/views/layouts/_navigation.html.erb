@@ -1,18 +1,35 @@
 <nav class="navbar navbar-custom navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <%# <a class="navbar-brand" href="#">Blog App</a> %>
     <%= link_to "Blog App", blogs_path, class: "navbar-brand", id: "logo" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" >
+                    <%=  button_to "All Categories", categories_path, method: :get,
+                    :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
+                    sans-serif; color: #0d6efd; cursor: pointer;' %>
+                  </a>
+            </li>
+            <% Category.all.each do |category| %>
+              <li class="dropdown-item"><%= button_to "#{category.name}", category_path(category), method: :get,
+                      :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
+                      sans-serif; color: #0d6efd; cursor: pointer;' %></li>
+            <% end %>
+            <li class="dropdown-item">
+              <%= button_to "Add New Category", new_category_path, method: :get,
+                      :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
+                      sans-serif; color: #0d6efd; cursor: pointer;' %>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
+
         <% if user_signed_in? %>
         <li class="nav-item">
             <a class="nav-link" >
@@ -22,7 +39,7 @@
             </a>
         </li>
         <% end %>
-        <% if user_signed_in? && current_user.admin? %>
+        <% if user_signed_in? %>
           <li class="nav-item" >
             <a class="nav-link" >
               <%= button_to "Edit Users", users_path, method: :get, 
@@ -30,14 +47,19 @@
                         sans-serif; color: #0d6efd; cursor: pointer;' %>
             </a>
           </li>
+          <li class="nav-item"><a class="nav-link" >
+                          <%=  button_to "Logout", destroy_user_session_path, method: :delete,
+                          :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
+                          sans-serif; color: #0d6efd; cursor: pointer;' %>
+                  </a></li>
+        <% else %>
+          <li class="nav-item"><a class="nav-link" >
+                          <%=  button_to "Login", new_user_session_path, method: :delete,
+                          :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
+                          sans-serif; color: #0d6efd; cursor: pointer;' %>
+                  </a></li>
         <% end %>
       </ul>
-      <%# <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        Hi, <%= current_user.email%>
-        <%# <button class="btn btn-outline-success" type="submit">Search</button> %>
-      <%# </form> %>
-      
       <div>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
@@ -46,11 +68,6 @@
                   Hi, <%= current_user.email %>, you are a [<%= current_user.role %>]
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" >
-                          <%=  button_to "Logout", destroy_user_session_path, method: :delete,
-                          :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
-                          sans-serif; color: #0d6efd; cursor: pointer;' %>
-                  </a></li>
                   <li><a class="dropdown-item">  
                       <%= button_to "Edit User", edit_user_registration_path(current_user), method: :get,
                           :style => 'background: none!important; border: none; padding: 0!important; font-family: arial,
@@ -63,10 +80,6 @@
                           sans-serif; color: #0d6efd; cursor: pointer;' %>
                       </a></li>
                 </ul>
-                <% else %>
-                  <a>
-                    <%= link_to "SignIn", new_user_session_path %>
-                </a>
               <% end %>
             </li>
         </ul>

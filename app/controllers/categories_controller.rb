@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
           flash[:success] = "Object successfully created"
           redirect_to categories_path
         else
-          flash[:error] = "Something went wrong"
+          flash[:danger] = "Something went wrong"
           render 'new'
         end
     end

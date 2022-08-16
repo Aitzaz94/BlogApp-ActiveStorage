@@ -5,3 +5,4 @@
 //= require jquery_ujs
 //= require popper
 //= require bootstrap-sprockets
+// import "custom/main"
